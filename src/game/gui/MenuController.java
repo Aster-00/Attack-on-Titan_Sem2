@@ -45,8 +45,8 @@ public class MenuController {
 	Button gameInstructionsButton;
 	@FXML
 	Button SettingsButton;
-	//Media media1 = new Media(new File("game/gui/tools/SelectSoundEffect.mp3").toURI().toString());
-    //MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
+	Media media1 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/SelectSoundEffect.mp3").toURI().toString());
+    MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
 
 	Font font = Font.loadFont(getClass().getResource("/game/gui/tools/Ditty.ttf").toExternalForm(), 150);
     
@@ -54,6 +54,7 @@ public class MenuController {
 		//scene.setUserAgentStylesheet(url); css
 		AOTLabel.setFont(font);
 		System.out.println("Hello");
+		mediaPlayer1.setVolume(80);
 		
 	}
 	
@@ -88,7 +89,7 @@ public class MenuController {
 		 localButton.setVisible(!localButton.isVisible());
 	 }
 	 public void playButtonHover(){
-		 
+		 mediaPlayer1.play();
 	 }
 
 }
