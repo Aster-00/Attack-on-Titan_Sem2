@@ -1,5 +1,7 @@
 package game.gui;
 
+import game.engine.Battle;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -47,17 +49,24 @@ public class MenuController {
 	Button SettingsButton;
 	Media media1 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/SelectSoundEffect.mp3").toURI().toString());
     MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
-
-	Font font = Font.loadFont(getClass().getResource("/game/gui/tools/Ditty.ttf").toExternalForm(), 150);
+    Media media2 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/menuMusic.mp3").toURI().toString());
+    MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
+    
+    
+    
+	
+	//Font font = Font.loadFont(getClass().getResource("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/Ditty.ttf").toExternalForm(), 150);
     
 	public void initialize(){
 		//scene.setUserAgentStylesheet(url); css
-		AOTLabel.setFont(font);
+		//AOTLabel.setFont(font);
 		System.out.println("Hello");
 		mediaPlayer1.setVolume(80);
 		
+		mediaPlayer2.setVolume(50);
+		//mediaPlayer2.play();
+		
 	}
-	
 	public void switchToMenu(ActionEvent event) throws IOException {
 		  root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -72,6 +81,7 @@ public class MenuController {
 		 }
 		 
 	 public void switchToEasyMode(ActionEvent event) throws IOException {
+		 
 		  Parent root = FXMLLoader.load(getClass().getResource("EasyMode.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
@@ -90,6 +100,9 @@ public class MenuController {
 	 }
 	 public void playButtonHover(){
 		 mediaPlayer1.play();
+	 }
+	 public void stopButtonHover(){
+		 mediaPlayer1.stop();
 	 }
 
 }

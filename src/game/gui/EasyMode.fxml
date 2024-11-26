@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
@@ -34,7 +35,7 @@
       <ProgressBar fx:id="lane3Health" layoutX="1.0" layoutY="349.0" prefHeight="18.0" prefWidth="91.0" progress="1.0" />
       <Label fx:id="lane3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="331.0" prefHeight="17.0" prefWidth="88.0" text="Danger Level: 0" textFill="WHITE" />
       <Label fx:id="lane2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="244.0" prefHeight="17.0" prefWidth="87.0" text="Danger Level: 0" textFill="WHITE" />
-      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="-1.0" layoutY="116.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="126.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
       <Rectangle fx:id="lane2Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="218.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
       <Rectangle fx:id="lane3Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutY="308.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="127.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
@@ -94,5 +95,6 @@
             <Image url="@tools/WeaponButtonImage.png" />
          </image>
       </ImageView>
+      <Button fx:id="wallTrapbutton" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Button" textFill="WHITE" />
    </children>
 </AnchorPane>
