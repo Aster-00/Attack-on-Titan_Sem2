@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.MenuController">
+   <children>
+      <ImageView fx:id="menuBackground" fitHeight="490.0" fitWidth="726.0" layoutX="-63.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@tools/bg1.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Button fx:id="multiPlayerButton" layoutX="18.0" layoutY="187.0" mnemonicParsing="false" onAction="#MultiButtonsPress" prefHeight="31.0" prefWidth="83.0" text="MultiPlayer" />
+      <Button fx:id="gameInstructionsButton" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="121.0" text="Game Instructions" />
+      <Button fx:id="SettingsButton" layoutX="20.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" text="Settings" />
+      <Label id="title" fx:id="AOTLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="116.0" prefWidth="663.0" style="-fx-font-family: Ditty;" styleClass="Label" stylesheets="@menuSheet.css" text="Attack On Titans" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button fx:id="singlePlayerButton" layoutX="19.0" layoutY="137.0" mnemonicParsing="false" onAction="#singleButtonsPress" prefHeight="31.0" prefWidth="83.0" text="Singleplayer" />
+      <Button fx:id="easyButton" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#switchToEasyMode" text="Easy" visible="false" />
+      <Button fx:id="hardButton" layoutX="216.0" layoutY="143.0" mnemonicParsing="false" text="Hard" visible="false" />
+      <Button fx:id="onlineButton" layoutX="141.0" layoutY="190.0" mnemonicParsing="false" text="Online" visible="false" />
+      <Button fx:id="localButton" layoutX="215.0" layoutY="190.0" mnemonicParsing="false" text="Local" visible="false" />
+   </children>
+</AnchorPane>
