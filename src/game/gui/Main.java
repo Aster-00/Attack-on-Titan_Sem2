@@ -31,6 +31,8 @@ public class Main extends Application {
 			primaryStage.setFullScreen(true);
 			primaryStage.setResizable(false);
 			primaryStage.setMaximized(true);
+			primaryStage.setTitle("Attack on Titan");
+			
 			primaryStage.show();
 			
 		}

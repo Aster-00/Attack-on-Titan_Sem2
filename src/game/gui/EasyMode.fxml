@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.EasyModeController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.EasyModeController">
    <children>
       <GridPane id="battleGp" fx:id="battleGp" layoutX="1.0" layoutY="124.0" prefHeight="274.0" prefWidth="601.0" AnchorPane.topAnchor="124.0">
         <columnConstraints>
@@ -35,9 +34,9 @@
       <ProgressBar fx:id="lane3Health" layoutX="1.0" layoutY="349.0" prefHeight="18.0" prefWidth="91.0" progress="1.0" />
       <Label fx:id="lane3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="331.0" prefHeight="17.0" prefWidth="88.0" text="Danger Level: 0" textFill="WHITE" />
       <Label fx:id="lane2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="244.0" prefHeight="17.0" prefWidth="87.0" text="Danger Level: 0" textFill="WHITE" />
-      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="126.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
-      <Rectangle fx:id="lane2Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="218.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
-      <Rectangle fx:id="lane3Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutY="308.0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="126.0" onDragDropped="#l0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane2Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="218.0" onDragDropped="#l1" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane3Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutY="308.0" onDragDropped="#l2" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="127.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
       <ImageView fx:id="resourcesImage" fitHeight="21.0" fitWidth="155.0" layoutX="49.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -75,26 +74,25 @@
             <Image url="@tools/NumOfTurns.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="weaopn1ButtonImage" fitHeight="31.0" fitWidth="115.0" layoutX="25.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weaopn2ButtonImage" fitHeight="30.0" fitWidth="115.0" layoutX="132.0" layoutY="41.0" onDragDetected="#p2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/WeaponButtonImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="weaopn2ButtonImage" fitHeight="30.0" fitWidth="115.0" layoutX="129.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weaopn4ButtonImage" fitHeight="30.0" fitWidth="100.0" layoutX="133.0" layoutY="85.0" onDragDetected="#p4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/WeaponButtonImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="weaopn4ButtonImage" fitHeight="30.0" fitWidth="115.0" layoutX="129.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weaopn3ButtonImage" fitHeight="30.0" fitWidth="100.0" layoutX="30.0" layoutY="85.0" onDragDetected="#p3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/WeaponButtonImage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="weaopn3ButtonImage" fitHeight="30.0" fitWidth="115.0" layoutX="25.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weaopn1ButtonImage" fitHeight="30.0" fitWidth="115.0" layoutX="30.0" layoutY="41.0" onMouseClicked="#p1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/WeaponButtonImage.png" />
          </image>
       </ImageView>
-      <Button fx:id="wallTrapbutton" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Button" textFill="WHITE" />
    </children>
 </AnchorPane>

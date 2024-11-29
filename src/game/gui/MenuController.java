@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MenuController {
-	
+
 	Stage stage;
 	Scene scene;
 	Parent root;
@@ -48,61 +48,61 @@ public class MenuController {
 	@FXML
 	Button SettingsButton;
 	Media media1 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/SelectSoundEffect.mp3").toURI().toString());
-    MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
-    Media media2 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/menuMusic.mp3").toURI().toString());
-    MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
-    
-    
-    
-	
+	MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
+	Media media2 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/menuMusic.mp3").toURI().toString());
+	MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
+
+
+
+
 	//Font font = Font.loadFont(getClass().getResource("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/Ditty.ttf").toExternalForm(), 150);
-    
+
 	public void initialize(){
 		//scene.setUserAgentStylesheet(url); css
 		//AOTLabel.setFont(font);
 		System.out.println("Hello");
 		mediaPlayer1.setVolume(80);
-		
+
 		mediaPlayer2.setVolume(50);
 		//mediaPlayer2.play();
-		
+		anchor.setPrefSize(1, 1);
+
 	}
 	public void switchToMenu(ActionEvent event) throws IOException {
-		  root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		  scene = new Scene(root);
-		  stage.setScene(scene);
-		  stage.show();
-		  stage.setFullScreen(true);
-		  stage.setResizable(false);
-		  stage.setMaximized(true);
-		  stage.show();
-			
-		 }
-		 
-	 public void switchToEasyMode(ActionEvent event) throws IOException {
-		 
-		  Parent root = FXMLLoader.load(getClass().getResource("EasyMode.fxml"));
-		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		  scene = new Scene(root);
-		  stage.setScene(scene);
-		  stage.show();
-		 }
-	 @FXML
-	 public void singleButtonsPress(){
-		 hardButton.setVisible(!hardButton.isVisible());
-		 easyButton.setVisible(!easyButton.isVisible());
-	 }
-	 @FXML
-	 public void MultiButtonsPress(){
-		 onlineButton.setVisible(!onlineButton.isVisible());
-		 localButton.setVisible(!localButton.isVisible());
-	 }
-	 public void playButtonHover(){
-		 mediaPlayer1.play();
-	 }
-	 public void stopButtonHover(){
-		 mediaPlayer1.stop();
-	 }
+		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		stage.setFullScreen(true);
+		stage.setResizable(false);
+		stage.show();
+
+	}
+
+	public void switchToEasyMode(ActionEvent event) throws IOException {
+
+		Parent root = FXMLLoader.load(getClass().getResource("EasyMode.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	@FXML
+	public void singleButtonsPress(){
+		hardButton.setVisible(!hardButton.isVisible());
+		easyButton.setVisible(!easyButton.isVisible());
+	}
+	@FXML
+	public void MultiButtonsPress(){
+		onlineButton.setVisible(!onlineButton.isVisible());
+		localButton.setVisible(!localButton.isVisible());
+	}
+	public void playButtonHover(){
+		mediaPlayer1.play();
+	}
+	public void stopButtonHover(){
+		mediaPlayer1.stop();
+	}
 
 }

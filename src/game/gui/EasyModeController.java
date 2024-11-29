@@ -3,6 +3,8 @@ package game.gui;
 import java.io.IOException;
 
 import game.engine.Battle;
+import game.engine.exceptions.InsufficientResourcesException;
+import game.engine.exceptions.InvalidLaneException;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.ImageCursor;
@@ -12,6 +14,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -19,11 +28,20 @@ public class EasyModeController {
 	Stage stage;
 	Scene scene;
 	Parent root;
-	
+
 	Battle battle;
-	
+	Image buttonImage = new Image("/game/gui/tools/WeaponButtonImage.png");
+
+	// Create a BackgroundImage
+	BackgroundImage backgroundImage = new BackgroundImage(buttonImage
+			,
+	        BackgroundRepeat.NO_REPEAT,
+	        BackgroundRepeat.NO_REPEAT,
+	        BackgroundPosition.CENTER,
+	        BackgroundSize.DEFAULT); 
+
 	@FXML
-	Button wallTrapButton;
+	AnchorPane anchor;
 	@FXML
 	Label resourcesLabel;
 	@FXML
@@ -40,24 +58,61 @@ public class EasyModeController {
 	ProgressBar lane2Health;
 	@FXML
 	ProgressBar lane3Health;
-	
-	
+	@FXML
+	ImageView weaopn1ButtonImage;
+	@FXML
+	ImageView weaopn2ButtonImage;
+	@FXML
+	ImageView weaopn3ButtonImage;
+	@FXML
+	ImageView weaopn4ButtonImage;
+	int purchaseCode=0;
+
 	public void initialize(){
 		try {
 			battle=new Battle(0, 0, 100, 3, 250);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//anchor.setPrefSize(500, 500);
 	}
-	public void buyWallTrap(){
-		//battleGp.set
-	}
-	
+
 	public void updateScreen(){
 		//TODO changeResource label
 		//TODO health bars
 		//TODO Rectangle black
 		//TODO update number of rounds
 	}
+	public void startPurchaseAnimation(){
+		//TODO clench mouse
+		//TODO darken image
+	/*	switch(purchaseCode){
+		//case 1:weaopn1ButtonImage.set
+			break;
+		}*/
+	}
+	public void endPurchaseAnimation(){
+		//TODO unclench mouse
+		//TODO brighten weapon image back
+	}
 	
+
+	public void p1(){purchaseCode=1;startPurchaseAnimation();}
+	public void p2(){purchaseCode=2;startPurchaseAnimation();}
+	public void p3(){purchaseCode=3;startPurchaseAnimation();}
+	public void p4(){purchaseCode=4;startPurchaseAnimation();}
+	
+	public void l0(){initiatePurchase(0, purchaseCode);}
+	public void l1(){initiatePurchase(1, purchaseCode);}
+	public void l2(){initiatePurchase(2, purchaseCode);}
+	
+	
+	private void initiatePurchase(int laneNo,int weaponCode){
+		try {
+			battle.purchaseWeapon(weaponCode, battle.getOriginalLanes().get(laneNo));
+		} catch (InsufficientResourcesException | InvalidLaneException e) {
+			//TODO generate flying red text
+		}
+	}
+
 }
