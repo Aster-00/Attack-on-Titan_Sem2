@@ -22,8 +22,8 @@ public class Main extends Application {
 		{
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			
-			System.out.println(screenBounds.getWidth()+ " "+ screenBounds.getHeight());
-			// Set scene size
+			//System.out.println(screenBounds.getWidth()+ " "+ screenBounds.getHeight());
+			//Set scene size
 			Parent root=FXMLLoader.load(getClass().getResource("Menu.fxml"));
 			menuController.scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 			setUpScene(menuController.scene);
@@ -32,7 +32,6 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setMaximized(true);
 			primaryStage.setTitle("Attack on Titan");
-			
 			primaryStage.show();
 			
 		}
@@ -44,7 +43,6 @@ public class Main extends Application {
 	}
 
 	public void setUpScene(Scene sc){
-		sc.setCursor(cursor);
-		
+		sc.setCursor(cursor);	
 	}
 }
