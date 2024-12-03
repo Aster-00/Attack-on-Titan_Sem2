@@ -74,8 +74,8 @@ public class MenuController {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-		stage.setFullScreen(true);
-		stage.setResizable(false);
+		//stage.setFullScreen(true);
+		stage.setResizable(true);
 		stage.show();
 
 	}
