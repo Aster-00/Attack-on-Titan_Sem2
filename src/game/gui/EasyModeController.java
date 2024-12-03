@@ -38,6 +38,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class EasyModeController {
@@ -64,11 +65,11 @@ public class EasyModeController {
 	@FXML
 	GridPane battleGp;
 	@FXML
-	Rectangle2D lan1Rect;
+	Rectangle lan1Rect;
 	@FXML
-	Rectangle2D lan2Rect;
+	Rectangle lan2Rect;
 	@FXML
-	Rectangle2D lan3Rect;
+	Rectangle lan3Rect;
 	@FXML
 	ProgressBar lane1Health;
 	@FXML
@@ -114,6 +115,13 @@ public class EasyModeController {
 		lane1Health.setProgress(battle.getOriginalLanes().get(0).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(0).getLaneWall().getBaseHealth());
 		lane2Health.setProgress(battle.getOriginalLanes().get(1).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(1).getLaneWall().getBaseHealth());
 		lane3Health.setProgress(battle.getOriginalLanes().get(2).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(2).getLaneWall().getBaseHealth());
+		
+		if(battle.getOriginalLanes().get(0).isLaneLost())
+			lan1Rect.setOpacity(1.0);
+		if(battle.getOriginalLanes().get(1).isLaneLost())
+			lan2Rect.setOpacity(1.0);		
+		if(battle.getOriginalLanes().get(2).isLaneLost())
+			lan3Rect.setOpacity(1.0);				
 		//TODO Rectangle black
 		moveTitans();	
 	}
