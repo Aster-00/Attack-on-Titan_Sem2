@@ -25,11 +25,13 @@ public class Main extends Application {
 			//System.out.println(screenBounds.getWidth()+ " "+ screenBounds.getHeight());
 			//Set scene size
 			Parent root=FXMLLoader.load(getClass().getResource("Menu.fxml"));
-			menuController.scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+			menuController.scene = new Scene(root);
 			setUpScene(menuController.scene);
 			primaryStage.setScene(menuController.scene);
+			primaryStage.setResizable(true);
+			//primaryStage.setAlwaysOnTop(true);
+			primaryStage.centerOnScreen();
 			primaryStage.setFullScreen(true);
-			primaryStage.setResizable(false);
 			primaryStage.setMaximized(true);
 			primaryStage.setTitle("Attack on Titan");
 			primaryStage.show();

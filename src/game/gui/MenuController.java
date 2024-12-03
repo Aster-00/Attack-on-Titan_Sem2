@@ -8,11 +8,14 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -52,7 +55,8 @@ public class MenuController {
 	Media media2 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/menuMusic.mp3").toURI().toString());
 	MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
 
-
+	Cursor cursor = new ImageCursor(new Image("/game/gui/tools/mouse.png"));
+	
 
 
 	//Font font = Font.loadFont(getClass().getResource("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/Ditty.ttf").toExternalForm(), 150);
@@ -60,13 +64,11 @@ public class MenuController {
 	public void initialize(){
 		//scene.setUserAgentStylesheet(url); css
 		//AOTLabel.setFont(font);
-		System.out.println("Hello");
 		mediaPlayer1.setVolume(80);
 
 		mediaPlayer2.setVolume(50);
 		//mediaPlayer2.play();
-		anchor.setPrefSize(1, 1);
-
+		
 	}
 	public void switchToMenu(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
@@ -74,8 +76,8 @@ public class MenuController {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-		//stage.setFullScreen(true);
-		stage.setResizable(true);
+		stage.setFullScreen(true);
+		stage.setResizable(false);
 		stage.show();
 
 	}
@@ -85,7 +87,11 @@ public class MenuController {
 		Parent root = FXMLLoader.load(getClass().getResource("EasyMode.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
+		scene.setCursor(cursor);
 		stage.setScene(scene);
+		
+		stage.setFullScreen(true);
+		stage.setResizable(false);
 		stage.show();
 	}
 	@FXML

@@ -1,12 +1,15 @@
 package game.gui;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import com.sun.javafx.scene.input.DragboardHelper;
 
 import game.engine.Battle;
 import game.engine.exceptions.InsufficientResourcesException;
 import game.engine.exceptions.InvalidLaneException;
+import game.engine.lanes.Lane;
+import game.engine.titans.Titan;
 import game.engine.weapons.PiercingCannon;
 import game.engine.weapons.SniperCannon;
 import game.engine.weapons.VolleySpreadCannon;
@@ -70,27 +73,19 @@ public class EasyModeController {
 	ProgressBar lane1Health;
 	@FXML
 	ProgressBar lane2Health;
-	@FXML
-	ProgressBar lane3Health;
-	@FXML
-	ImageView weaopn1ButtonImage;
-	@FXML
-	ImageView weaopn2ButtonImage;
-	@FXML
-	ImageView weaopn3ButtonImage;
-	@FXML
-	ImageView weaopn4ButtonImage;
-	@FXML
-	Button PiercingButton;
-	@FXML
-	Button sniperButton;
-	@FXML
-	Button volleySpreadButton;
-	@FXML
-	Button wallTrapButton;
+	@FXML ProgressBar lane3Health;
+	@FXML ImageView weaopn1ButtonImage;
+	@FXML ImageView weaopn2ButtonImage;
+	@FXML ImageView weaopn3ButtonImage;
+	@FXML ImageView weaopn4ButtonImage;
+	@FXML Button PiercingButton;
+	@FXML Button sniperButton;
+	@FXML Button volleySpreadButton;
+	@FXML Button wallTrapButton;
 	@FXML Label lane1Label;
 	@FXML Label lane2Label;
 	@FXML Label lane3Label;
+	@FXML Label roundLabel;
 	
 	
 
@@ -106,18 +101,32 @@ public class EasyModeController {
 		volleySpreadButton.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 		wallTrapButton.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 		updateScreen();
+		
 	}
 
 	public void updateScreen(){
 		resourcesLabel.setText("Resources: "+battle.getResourcesGathered());
+		
 		lane1Label.setText("Danger Level: "+battle.getOriginalLanes().get(0).getDangerLevel());
 		lane2Label.setText("Danger Level: "+battle.getOriginalLanes().get(1).getDangerLevel());
 		lane3Label.setText("Danger Level: "+battle.getOriginalLanes().get(2).getDangerLevel());
-		
-		//TODO health bars
+		roundLabel.setText("Round: "+battle.getNumberOfTurns());
+		lane1Health.setProgress(battle.getOriginalLanes().get(0).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(0).getLaneWall().getBaseHealth());
+		lane2Health.setProgress(battle.getOriginalLanes().get(1).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(1).getLaneWall().getBaseHealth());
+		lane3Health.setProgress(battle.getOriginalLanes().get(2).getLaneWall().getCurrentHealth()/battle.getOriginalLanes().get(2).getLaneWall().getBaseHealth());
 		//TODO Rectangle black
-		//TODO update number of rounds
+		moveTitans();	
 	}
+	public void moveTitans(){
+		for (int i = 0; i < battle.getOriginalLanes().size(); i++) {
+			Lane l= battle.getOriginalLanes().get(i);
+			for(Titan t :l.getTitans()){
+				//battleGp.
+			}
+		}
+	}
+	
+	
 	public void startPurchaseAnimation(){
 		//TODO clench mouse
 		/*switch(purchaseCode){
@@ -127,7 +136,7 @@ public class EasyModeController {
 	}
 	
 	public void endPurchaseAnimation(){
-		//TODO unclench mouse
+		
 		//TODO brighten weapon image back
 	}
 	
@@ -139,7 +148,6 @@ public class EasyModeController {
 		content.putString(Integer.toString(PiercingCannon.WEAPON_CODE)); // Convert int to string
 		db.setContent(content);
 		startPurchaseAnimation();
-		System.out.println(content.getString());
 	}
 	public void p2(MouseEvent event)
 	{
@@ -147,8 +155,6 @@ public class EasyModeController {
 		ClipboardContent content = new ClipboardContent();
 		content.putString(Integer.toString(SniperCannon.WEAPON_CODE)); // Convert int to string
 		db.setContent(content);
-		System.out.println(content.getString());
-			
 	}
 	public void p3(MouseEvent event)
 	{
@@ -157,7 +163,6 @@ public class EasyModeController {
 		content.putString(Integer.toString(VolleySpreadCannon.WEAPON_CODE)); // Convert int to string
 		db.setContent(content);
 		startPurchaseAnimation();
-		System.out.println(content.getString());
 	}
 	
 	public void p4(MouseEvent event)
@@ -167,7 +172,6 @@ public class EasyModeController {
 		content.putString(Integer.toString(WallTrap.WEAPON_CODE)); // Convert int to string
 		db.setContent(content);
 		startPurchaseAnimation();
-		System.out.println(content.getString());
 	}
 	
 	public void l0(DragEvent event)
@@ -176,7 +180,6 @@ public class EasyModeController {
 			int p = Integer.parseInt(event.getDragboard().getString());
 			System.out.println(event.getDragboard().getString());
 			initiatePurchase(0, p);
-			System.out.println("lane 0");
 			updateScreen();
 		}
 		else{
@@ -190,7 +193,6 @@ public class EasyModeController {
 			int p = Integer.parseInt(event.getDragboard().getString());
 			System.out.println(event.getDragboard().getString());
 			initiatePurchase(0, p);
-			System.out.println("lane 1");
 			updateScreen();
 		}
 		else{
@@ -200,10 +202,10 @@ public class EasyModeController {
 	public void l2(DragEvent event)
 	{
 		if(event.getDragboard().hasString()){
+			event.acceptTransferModes(TransferMode.ANY);
 			int p = Integer.parseInt(event.getDragboard().getString());
 			System.out.println(event.getDragboard().getString());
 			initiatePurchase(0, p);
-			System.out.println("lane 0");
 			updateScreen();
 		}
 		else{
@@ -211,13 +213,22 @@ public class EasyModeController {
 		}
 		
 	}
+	public void l2DragOver(DragEvent event){
+		if(event.getDragboard().hasString()){
+			event.acceptTransferModes(TransferMode.ANY);
+		}
+		else System.out.println("Over fail");
+	}
 	
 	
 	private void initiatePurchase(int laneNo,int weaponCode){
 		try {
 			battle.purchaseWeapon(weaponCode, battle.getOriginalLanes().get(laneNo));
-		} catch (InsufficientResourcesException | InvalidLaneException e) {
-			//TODO generate flying red text
+		} catch (InsufficientResourcesException e ) {
+			AnimatedTextField.showMessage(anchor,"Insufficient Resources");
+		}
+		catch(InvalidLaneException e){
+			AnimatedTextField.showMessage(anchor, "Invalid Lane");
 		}
 	}
 

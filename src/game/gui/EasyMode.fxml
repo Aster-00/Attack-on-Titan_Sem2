@@ -25,7 +25,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <ImageView fx:id="battleField" fitHeight="466.0" fitWidth="601.0" layoutX="-1.0" layoutY="-24.0" pickOnBounds="true" smooth="false" AnchorPane.topAnchor="-24.0">
+      <ImageView fx:id="battleField" fitHeight="466.0" fitWidth="608.0" layoutX="-1.0" layoutY="-24.0" pickOnBounds="true" smooth="false" AnchorPane.topAnchor="-24.0">
          <image>
             <Image url="@tools/easyBAckground.jpg" />
          </image>
@@ -36,9 +36,9 @@
       <ProgressBar fx:id="lane3Health" layoutX="1.0" layoutY="349.0" prefHeight="18.0" prefWidth="91.0" progress="1.0" />
       <Label fx:id="lane3Label" alignment="CENTER" contentDisplay="CENTER" layoutY="331.0" onDragDropped="#l2" prefHeight="17.0" prefWidth="111.0" text="Danger Level: 0" textFill="WHITE" />
       <Label fx:id="lane2Label" alignment="CENTER" contentDisplay="CENTER" layoutY="244.0" onDragDropped="#l1" prefHeight="17.0" prefWidth="98.0" text="Danger Level: 0" textFill="WHITE" />
-      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="126.0" onDragDropped="#l0" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
-      <Rectangle fx:id="lane2Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="218.0" onDragDropped="#l1" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
-      <Rectangle fx:id="lane3Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutY="308.0" onDragDropped="#l2" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane1Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="126.0" onDragDropped="#l0" onDragOver="#l2DragOver" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane2Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutX="1.0" layoutY="218.0" onDragDropped="#l1" onDragOver="#l2DragOver" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
+      <Rectangle fx:id="lane3Rect" arcHeight="5.0" arcWidth="5.0" fill="#ba0505" height="94.0" layoutY="308.0" onDragDropped="#l2" onDragOver="#l2DragOver" opacity="0.0" stroke="#ba0505" strokeType="INSIDE" width="601.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="127.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
       <ImageView fx:id="resourcesImage" fitHeight="21.0" fitWidth="155.0" layoutX="49.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -51,7 +51,7 @@
             <Image url="@tools/hud%20frame.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hudBoarder4" fitHeight="60.0" fitWidth="75.0" layoutX="-1.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hudBoarder4" fitHeight="60.0" fitWidth="75.0" layoutX="-1.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/hud%20frame4.png" />
          </image>
@@ -71,7 +71,7 @@
             <Image url="@tools/TitanInfo.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NumOfTurnsPic" fitHeight="94.0" fitWidth="79.0" layoutX="292.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="NumOfTurnsPic" fitHeight="94.0" fitWidth="118.0" layoutX="266.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/NumOfTurns.png" />
          </image>
@@ -136,5 +136,10 @@
             <Image url="@tools/WallTrap.png" />
          </image>
       </ImageView>
+      <Label fx:id="roundLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="5.0" prefHeight="51.0" prefWidth="49.0" text="Round: " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
