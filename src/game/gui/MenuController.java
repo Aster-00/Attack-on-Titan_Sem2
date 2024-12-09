@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -87,11 +88,13 @@ public class MenuController {
 		Parent root = FXMLLoader.load(getClass().getResource("EasyMode.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
+		root.prefWidth(stage.getWidth());
+		root.prefHeight(stage.getHeight());
 		scene.setCursor(cursor);
 		stage.setScene(scene);
 		
 		stage.setFullScreen(true);
-		stage.setResizable(false);
+		stage.setResizable(true);
 		stage.show();
 	}
 	@FXML

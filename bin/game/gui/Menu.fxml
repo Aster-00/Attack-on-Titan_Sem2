@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.MenuController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.MenuController">
    <children>
-      <ImageView fx:id="menuBackground" fitHeight="490.0" fitWidth="726.0" layoutX="-63.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="menuBackground" fitHeight="832.0" fitWidth="1466.0" layoutX="-86.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@tools/bg1.jpg" />
          </image>
@@ -18,18 +18,42 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Button fx:id="multiPlayerButton" layoutX="18.0" layoutY="187.0" mnemonicParsing="false" onAction="#MultiButtonsPress" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="31.0" prefWidth="83.0" text="MultiPlayer" />
-      <Button fx:id="gameInstructionsButton" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="31.0" prefWidth="121.0" text="Game Instructions" />
-      <Button fx:id="SettingsButton" layoutX="20.0" layoutY="287.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="31.0" prefWidth="83.0" text="Settings" />
-      <Label id="title" fx:id="AOTLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="116.0" prefWidth="663.0" style="-fx-font-family: Ditty;" styleClass="Label" stylesheets="@menuSheet.css" text="Attack On Titans" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="multiPlayerButton" layoutX="41.0" layoutY="370.0" mnemonicParsing="false" onAction="#MultiButtonsPress" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="58.0" prefWidth="171.0" text="MultiPlayer">
          <font>
-            <Font size="34.0" />
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="gameInstructionsButton" layoutX="41.0" layoutY="460.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="58.0" prefWidth="209.0" text="Game Instructions">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="SettingsButton" layoutX="41.0" layoutY="550.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="61.0" prefWidth="199.0" text="Settings">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Label id="title" fx:id="AOTLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="172.0" prefWidth="1281.0" style="-fx-font-family: Ditty;" styleClass="Label" stylesheets="@menuSheet.css" text="Attack On Titans" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="PMingLiU-ExtB" size="61.0" />
          </font>
       </Label>
-      <Button fx:id="singlePlayerButton" layoutX="19.0" layoutY="137.0" mnemonicParsing="false" onAction="#singleButtonsPress" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="31.0" prefWidth="83.0" text="Singleplayer" />
-      <Button fx:id="easyButton" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#switchToEasyMode" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" text="Easy" visible="false" />
-      <Button fx:id="hardButton" layoutX="216.0" layoutY="143.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" text="Hard" visible="false" />
-      <Button fx:id="onlineButton" layoutX="141.0" layoutY="190.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" text="Online" visible="false" />
-      <Button fx:id="localButton" layoutX="215.0" layoutY="190.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" text="Local" visible="false" />
+      <Button fx:id="singlePlayerButton" layoutX="41.0" layoutY="280.0" mnemonicParsing="false" onAction="#singleButtonsPress" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="58.0" prefWidth="165.0" text="Singleplayer">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="easyButton" layoutX="269.0" layoutY="287.0" mnemonicParsing="false" onAction="#switchToEasyMode" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="42.0" prefWidth="105.0" text="Easy" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="hardButton" layoutX="413.0" layoutY="287.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="42.0" prefWidth="130.0" text="Hard" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="onlineButton" layoutX="417.0" layoutY="377.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="42.0" prefWidth="131.0" text="Online" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="localButton" layoutX="265.0" layoutY="377.0" mnemonicParsing="false" onMouseEntered="#playButtonHover" onMouseExited="#stopButtonHover" prefHeight="42.0" prefWidth="114.0" text="Local" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
    </children>
 </AnchorPane>

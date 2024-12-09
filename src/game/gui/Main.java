@@ -20,16 +20,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try
 		{
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-			
-			//System.out.println(screenBounds.getWidth()+ " "+ screenBounds.getHeight());
-			//Set scene size
 			Parent root=FXMLLoader.load(getClass().getResource("Menu.fxml"));
 			menuController.scene = new Scene(root);
 			setUpScene(menuController.scene);
 			primaryStage.setScene(menuController.scene);
 			primaryStage.setResizable(true);
-			//primaryStage.setAlwaysOnTop(true);
 			primaryStage.centerOnScreen();
 			primaryStage.setFullScreen(true);
 			primaryStage.setMaximized(true);

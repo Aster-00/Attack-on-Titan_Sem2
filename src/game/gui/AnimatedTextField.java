@@ -9,7 +9,7 @@ import javafx.util.Duration;
 
 public class AnimatedTextField {
 
-    public static void showMessage(Pane root, String message) {
+    public static Label showMessage(Pane root, String message) {
         Label messageLabel = new Label(message);
         messageLabel.setTextFill(Color.RED);
         // Adjust font size and positioning as needed
@@ -35,5 +35,6 @@ public class AnimatedTextField {
 
         // Add the label to the root pane
         root.getChildren().add(messageLabel);
+        return messageLabel;
     }
 }
