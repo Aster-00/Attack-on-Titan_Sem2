@@ -296,12 +296,6 @@ public class Battle {
 		return true;
 	}
 
-
-
-
-
-
-
 	public int getNumberOfTurns() {
 		return numberOfTurns;
 	}

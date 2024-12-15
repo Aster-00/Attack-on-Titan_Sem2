@@ -2,14 +2,9 @@ package game.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
-import com.sun.javafx.scene.input.DragboardHelper;
-
 import game.engine.Battle;
-import game.engine.titans.*;
 import game.engine.exceptions.InsufficientResourcesException;
 import game.engine.exceptions.InvalidLaneException;
 import game.engine.lanes.Lane;
@@ -23,14 +18,14 @@ import game.engine.weapons.SniperCannon;
 import game.engine.weapons.VolleySpreadCannon;
 import game.engine.weapons.WallTrap;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.ImageCursor;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -70,7 +65,7 @@ public class EasyModeController {
 			BackgroundRepeat.NO_REPEAT,
 			BackgroundPosition.CENTER,
 			BackgroundSize.DEFAULT); 
-
+	@FXML Tooltip piercingCannonButtonToolTip;
 	@FXML AnchorPane anchor;
 	@FXML Label resourcesLabel;
 	@FXML GridPane battleGp;
@@ -97,17 +92,29 @@ public class EasyModeController {
 	@FXML Label roundLabel;
 	@FXML Button skipTurnButton;
 	@FXML Rectangle infoBackground;
-
+	FXMLLoader menuSceneLoader = new FXMLLoader(getClass().getResource("/game/gui/Menu.fxml"));	
+	
 
 
 
 	public void initialize(){
-		//TODO change to transfered data between scenes
+		try {
+			root = menuSceneLoader.load();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		MenuController menuController = menuSceneLoader.getController();
+		
+
+		
 		try {
 			battle=new Battle(0, 0, 100, 3, 250);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 
 		laneLabelArray.add(lane1Label);
 		laneLabelArray.add(lane2Label);
@@ -126,21 +133,56 @@ public class EasyModeController {
 		updateScreen();
 
 		sniperButton.setOnMouseEntered(e->{
+			menuController.playButtonHover();
 			//TODO wait 3 secs
 			//TODO pop up of weapon info
 		});
 		PiercingButton.setOnMouseEntered(e->{
+			menuController.playButtonHover();
 			//TODO wait 3 secs
 			//TODO pop up of weapon info
 		});
 		volleySpreadButton.setOnMouseEntered(e->{
+			menuController.playButtonHover();
 			//TODO wait 3 secs
 			//TODO pop up of weapon info
 		});
 		wallTrapButton.setOnMouseEntered(e->{
+			menuController.playButtonHover();
 			//TODO wait 3 secs
 			//TODO pop up of weapon info
 		});
+
+		skipTurnButton.setOnMouseEntered(e->{
+			menuController.playButtonHover();
+		});
+		//mouse exit
+		sniperButton.setOnMouseExited(e->{
+			menuController.stopButtonHover();
+			//TODO wait 3 secs
+			//TODO pop up of weapon info
+		});
+		PiercingButton.setOnMouseExited(e->{
+			menuController.stopButtonHover();
+			//TODO wait 3 secs
+			//TODO pop up of weapon info
+		});
+		volleySpreadButton.setOnMouseExited(e->{
+			menuController.stopButtonHover();
+			//TODO wait 3 secs
+			//TODO pop up of weapon info
+		});
+		wallTrapButton.setOnMouseExited(e->{
+			menuController.stopButtonHover();
+			//TODO wait 3 secs
+			//TODO pop up of weapon info
+		});
+		skipTurnButton.setOnMouseExited(e->{
+			menuController.stopButtonHover();
+		});
+
+		
+		
 
 		battleGp.toFront();
 		battleGp.setGridLinesVisible(true);
@@ -153,6 +195,7 @@ public class EasyModeController {
 				BackgroundSize.DEFAULT)));
 		battleGp.getRowConstraints().add(new RowConstraints((battleGp.getHeight()/battle.getOriginalLanes().size())));
 
+		//TODO fix titan movement
 		/*
 		placeHolderGP.setVisible(false);
 		placeHolderGP1.setVisible(false);
@@ -162,6 +205,10 @@ public class EasyModeController {
 		battleGp.add(placeHolderGP1, 105, 1);
 		battleGp.add(placeHolderGP2, 105, 2);
 		 */
+		
+		//TODO Fix Menu Music stop and play other music
+		//menuController.stopMenuMusic();
+		
 	}
 
 
@@ -191,6 +238,7 @@ public class EasyModeController {
 			if(battle.getOriginalLanes().get(i).isLaneLost())
 				removeRow(battleGp, i);
 		}
+		
 	}
 
 	private void removeRow(GridPane gridPane, int rowToRemove) {
@@ -206,7 +254,7 @@ public class EasyModeController {
 			gridPane.getChildren().removeAll(nodesToRemove);
 		}
 	}
-	public void hoverView(){
+	public void hoverOnTitianView(){
 		//TODO add elements
 	}
 
@@ -245,11 +293,11 @@ public class EasyModeController {
 
 
 	public void startPurchaseAnimation(){
-
+		
 	}
 
 	public void endPurchaseAnimation(){
-		//TODO brighten weapon image back
+		
 	}
 
 
