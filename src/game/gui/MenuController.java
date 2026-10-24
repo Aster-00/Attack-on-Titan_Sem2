@@ -38,9 +38,9 @@ public class MenuController {
 	@FXML Button hardButton;
 	@FXML Button gameInstructionsButton;
 	@FXML Button SettingsButton;
-	Media media1 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/SelectSoundEffect.mp3").toURI().toString());
+	Media media1 = new Media(getClass().getResource("/game/gui/tools/SelectSoundEffect.mp3").toExternalForm());
 	MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
-	Media media2 = new Media(new File("C:/Users/Ammar/Desktop/Projects Repos/Attack-on-Titan-Sem2/src/game/gui/tools/menuMusic.mp3").toURI().toString());
+	Media media2 = new Media(getClass().getResource("/game/gui/tools/menuMusic.mp3").toExternalForm());
 	MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
 
 	Cursor cursor = new ImageCursor(new Image("/game/gui/tools/mouse.png"));

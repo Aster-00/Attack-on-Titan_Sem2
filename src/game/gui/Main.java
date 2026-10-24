@@ -29,7 +29,7 @@ public class Main extends Application {
 			primaryStage.setFullScreen(true);
 			primaryStage.setMaximized(true);
 			primaryStage.setTitle("Attack on Titan");
-			Image icon = new Image("/game/gui/tools/icon.jpg");
+			Image icon = new Image("/game/gui/tools/Icon.jpg");
 			primaryStage.getIcons().add(icon);
 			primaryStage.show();
 			
