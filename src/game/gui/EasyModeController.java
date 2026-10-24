@@ -18,6 +18,8 @@ import game.engine.weapons.SniperCannon;
 import game.engine.weapons.VolleySpreadCannon;
 import game.engine.weapons.WallTrap;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -298,18 +300,10 @@ public class EasyModeController {
 		for (int i = 0; i < battle.getOriginalLanes().size(); i++) {
 			Lane l= battle.getOriginalLanes().get(i);
 			for(Titan t :l.getTitans()){
-				//if(t.getDistance()==100)//just spawned
-				{
-					Circle c = new Circle(5);
-					if(t instanceof PureTitan)
-						//TODO battleGp.add(new GuiTitan(t, ), 100, i); for image
-						c.setFill(Color.PALEGREEN);
-					if(t instanceof ColossalTitan)c.setFill(Color.CHOCOLATE);
-					if(t instanceof AbnormalTitan)c.setFill(Color.ANTIQUEWHITE);
-					if(t instanceof ArmoredTitan)c.setFill(Color.BLACK);
-
-					battleGp.add(c, t.getDistance(), i);
-				}
+				GuiTitan gt = new GuiTitan(t);
+				GridPane.setHalignment(gt, HPos.CENTER);
+				GridPane.setValignment(gt, VPos.CENTER);
+				battleGp.add(gt, t.getDistance(), i);
 			}
 		}
 
