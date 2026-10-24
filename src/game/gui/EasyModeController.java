@@ -47,6 +47,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -229,6 +230,10 @@ public class EasyModeController {
 			cc.setPercentWidth(100.0/106);
 			battleGp.getColumnConstraints().add(cc);
 		}
+		// lock the grid to its pref width; otherwise each 1% column demands room for a whole sprite
+		// and the grid's min width balloons, pushing new titans far off-screen
+		battleGp.setMinWidth(Region.USE_PREF_SIZE);
+		battleGp.setMaxWidth(Region.USE_PREF_SIZE);
 
 		setUpClickToPlace();
 
