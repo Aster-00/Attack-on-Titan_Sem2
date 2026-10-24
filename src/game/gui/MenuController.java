@@ -52,6 +52,13 @@ public class MenuController {
 	public void initialize(){
 		//scene.setUserAgentStylesheet(url); css
 		//AOTLabel.setFont(font);
+		// stretch the background and centre the title to whatever size the window is
+		menuBackground.setLayoutX(0);
+		menuBackground.setLayoutY(0);
+		menuBackground.setPreserveRatio(false);
+		menuBackground.fitWidthProperty().bind(anchor.widthProperty());
+		menuBackground.fitHeightProperty().bind(anchor.heightProperty());
+		AOTLabel.prefWidthProperty().bind(anchor.widthProperty());
 		mediaPlayer1.setVolume(80);
 
 		mediaPlayer2.setVolume(50);

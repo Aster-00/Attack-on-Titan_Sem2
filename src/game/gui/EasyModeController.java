@@ -31,6 +31,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -92,8 +95,20 @@ public class EasyModeController {
 	@FXML Label roundLabel;
 	@FXML Button skipTurnButton;
 	@FXML Rectangle infoBackground;
-	FXMLLoader menuSceneLoader = new FXMLLoader(getClass().getResource("/game/gui/Menu.fxml"));	
-	
+	@FXML ImageView battleField;
+	@FXML ImageView hudBoarder2;
+	@FXML ImageView hudBoarder3;
+	FXMLLoader menuSceneLoader = new FXMLLoader(getClass().getResource("/game/gui/Menu.fxml"));
+
+	// click-to-place: the weapon picked from the HUD that is waiting for a lane click (-1 = none)
+	int selectedWeapon = -1;
+	Button selectedButton;
+	Rectangle[] laneRects;
+	Label placementHint = new Label();
+	static final Color LOST_LANE_FILL = Color.web("#8d0505");
+	static final Color TARGET_LANE_FILL = Color.web("#f2c14e");
+	static final String SELECTED_BUTTON_STYLE = "-fx-border-color: #f2c14e; -fx-border-width: 2; -fx-border-radius: 4;";
+
 
 
 
@@ -104,7 +119,16 @@ public class EasyModeController {
 			e1.printStackTrace();
 		}
 		MenuController menuController = menuSceneLoader.getController();
-		
+
+		// make the background and the top HUD bar follow the window size
+		battleField.fitWidthProperty().bind(anchor.widthProperty());
+		battleField.fitHeightProperty().bind(anchor.heightProperty().add(24));
+		infoBackground.widthProperty().bind(anchor.widthProperty().add(20));
+		hudBoarder2.setTranslateX(0);
+		// pin the right-hand frames with anchors; binding layoutX breaks AnchorPane's layout pass
+		AnchorPane.setRightAnchor(hudBoarder2, -6.0);
+		AnchorPane.setRightAnchor(hudBoarder3, -1.0);
+
 
 		
 		try {
@@ -194,6 +218,8 @@ public class EasyModeController {
 				BackgroundPosition.CENTER,
 				BackgroundSize.DEFAULT)));
 		battleGp.getRowConstraints().add(new RowConstraints((battleGp.getHeight()/battle.getOriginalLanes().size())));
+
+		setUpClickToPlace();
 
 		//TODO fix titan movement
 		/*
@@ -335,8 +361,96 @@ public class EasyModeController {
 	}
 
 	public void skipTurn(){
+		clearWeaponSelection();
 		battle.passTurn();
 		updateScreen();
+	}
+
+	private void setUpClickToPlace(){
+		laneRects = new Rectangle[]{lan1Rect, lan2Rect, lan3Rect};
+		for (int i = 0; i < laneRects.length; i++) {
+			int lane = i;
+			Rectangle r = laneRects[i];
+			r.widthProperty().bind(anchor.widthProperty().add(20));
+			r.setOnMouseClicked(e -> {
+				if (e.getButton() == MouseButton.PRIMARY && selectedWeapon != -1)
+					placeSelectedWeapon(lane);
+			});
+			r.setOnMouseEntered(e -> refreshLaneHighlights());
+			r.setOnMouseExited(e -> refreshLaneHighlights());
+		}
+
+		PiercingButton.setOnAction(e -> selectWeapon(PiercingCannon.WEAPON_CODE, PiercingButton));
+		sniperButton.setOnAction(e -> selectWeapon(SniperCannon.WEAPON_CODE, sniperButton));
+		volleySpreadButton.setOnAction(e -> selectWeapon(VolleySpreadCannon.WEAPON_CODE, volleySpreadButton));
+		wallTrapButton.setOnAction(e -> selectWeapon(WallTrap.WEAPON_CODE, wallTrapButton));
+
+		// right-click or Esc cancels the selection
+		anchor.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+			if (e.getButton() == MouseButton.SECONDARY) clearWeaponSelection();
+		});
+		anchor.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+			if (e.getCode() == KeyCode.ESCAPE) clearWeaponSelection();
+		});
+
+		placementHint.setStyle("-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-size: 20px;"
+				+ " -fx-padding: 8 18; -fx-background-radius: 6; -fx-border-color: #f2c14e; -fx-border-radius: 6;");
+		placementHint.setLayoutY(200);
+		// translateX, not layoutX: AnchorPane owns layoutX and binding it breaks the layout pass
+		placementHint.translateXProperty().bind(anchor.widthProperty().subtract(placementHint.widthProperty()).divide(2));
+		placementHint.setMouseTransparent(true);
+		placementHint.setVisible(false);
+		anchor.getChildren().add(placementHint);
+	}
+
+	private void selectWeapon(int weaponCode, Button button){
+		if (selectedButton == button) {
+			clearWeaponSelection();
+			return;
+		}
+		if (selectedButton != null) selectedButton.setStyle("");
+		selectedWeapon = weaponCode;
+		selectedButton = button;
+		button.setStyle(SELECTED_BUTTON_STYLE);
+		placementHint.setText("Click a lane to place the " + button.getText() + "   ·   Right-click or Esc to cancel");
+		placementHint.setVisible(true);
+		placementHint.toFront();
+		refreshLaneHighlights();
+	}
+
+	private void clearWeaponSelection(){
+		if (selectedButton != null) selectedButton.setStyle("");
+		selectedWeapon = -1;
+		selectedButton = null;
+		placementHint.setVisible(false);
+		refreshLaneHighlights();
+	}
+
+	private void placeSelectedWeapon(int laneNo){
+		int weaponCode = selectedWeapon;
+		clearWeaponSelection();
+		initiatePurchase(laneNo, weaponCode);
+		updateScreen();
+	}
+
+	private void refreshLaneHighlights(){
+		if (laneRects == null) return;
+		for (int i = 0; i < laneRects.length; i++) {
+			Rectangle r = laneRects[i];
+			if (battle.getOriginalLanes().get(i).isLaneLost()) {
+				r.setFill(LOST_LANE_FILL);
+				r.setStroke(Color.BLACK);
+				r.setStrokeWidth(1);
+				r.setOpacity(1.0);
+			} else if (selectedWeapon != -1) {
+				r.setFill(TARGET_LANE_FILL.deriveColor(0, 1, 1, r.isHover() ? 0.45 : 0.18));
+				r.setStroke(TARGET_LANE_FILL);
+				r.setStrokeWidth(r.isHover() ? 4 : 2);
+				r.setOpacity(1.0);
+			} else {
+				r.setOpacity(0.0);
+			}
+		}
 	}
 
 	public void l0(DragEvent event)
