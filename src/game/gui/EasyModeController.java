@@ -44,6 +44,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -218,6 +219,14 @@ public class EasyModeController {
 				BackgroundPosition.CENTER,
 				BackgroundSize.DEFAULT)));
 		battleGp.getRowConstraints().add(new RowConstraints((battleGp.getHeight()/battle.getOriginalLanes().size())));
+
+		// one fixed-width column per distance unit (0..105) so empty columns don't collapse
+		battleGp.getColumnConstraints().clear();
+		for(int col = 0; col <= 105; col++){
+			ColumnConstraints cc = new ColumnConstraints();
+			cc.setPercentWidth(100.0/106);
+			battleGp.getColumnConstraints().add(cc);
+		}
 
 		setUpClickToPlace();
 
